@@ -1,0 +1,26 @@
+#!/bin/sh
+
+TEXT_RESET='\e[0m'
+TEXT_YELLOW='\e[0;33m'
+TEXT_RED_B='\e[1;31m'
+
+
+hile true; do
+    read -p "Would you like to set this as master node?" yn
+    case $yn in
+        [Yy]* ) sudo hostnamectl set-hostname master; 
+		echo $TEXT_YELLOW
+		echo "Your environment is set to MASTER";
+		echo $TEXT_RESET
+		break;;
+        [Nn]* ) echo  $TEXT_YELLOW
+		echo "Please enter desired name for the HostName"
+		read hostName
+		sudo hostnamectl set-hostname $hostName
+		echo  $TEXT_RED_B
+		echo 'Your Hostname is set as' $hostName
+		echo  $TEXT_RESET
+exit;;
+        * ) echo "Please answer YES or NO.";;
+    esac
+done

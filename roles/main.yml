@@ -1,0 +1,6 @@
+---
+# tasks file for RBAC
+- name: Setting up kubectl on Master Node
+  shell:
+    cmd: |
+      
