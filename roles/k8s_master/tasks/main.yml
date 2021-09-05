@@ -57,10 +57,6 @@
 - name: Deploying Flannel on Master Node
   command: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
-# this will setup ingress controller in master node.
-- name: Deploying Ingress on Master Node
-  command: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.48.1/deploy/static/provider/cloud/deploy.yaml
-
 - name: Creating token for Slave
   command: kubeadm token create  --print-join-command
   register: token
@@ -79,18 +75,22 @@
       kubectl config set-credentials simplilearn  --client-certificate=simplilearn.crt --client-key=simplilearn.key
 
 # Installing ETCD in Master node
-#- name: Installing ETCD in Master Node
-#  shell:
-#    cmd: |
-#      sudo yum install -y golang git
-#      sudo git clone -b v3.4.16 https://github.com/etcd-io/etcd.git
-#      cd etcd
-#      sudo ./build
-#      sudo export PATH="$PATH:`pwd`/bin"
+- name: Installing ETCD in Master Node
+  shell:
+    cmd: |
+      sudo yum install -y golang git
+      sudo git clone -b v3.4.16 https://github.com/etcd-io/etcd.git
+      cd etcd
+      sudo ./build
+      sudo export PATH="$PATH:`pwd`/bin"
 
 # Running  RBAC for a new user with permissions to create, list, get, update, and delete pods
 - name: Applying RBAC roles in Master Node
   command: kubectl apply -f https://raw.githubusercontent.com/0ktay3min/kubernetes-cluster/master/role-binging.yml
+
+# this will setup ingress controller in master node.
+- name: Deploying Ingress on Master Node
+  command: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/aws/deploy.yaml
 
 # this will setup Metrics-Server in master node.
 - name: Deploying Metrics-Server Master Node
