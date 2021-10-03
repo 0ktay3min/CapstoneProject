@@ -11,6 +11,7 @@ spec:
     app: wordpress
     tier: frontend
   type: LoadBalancer
+   
 
 ---
 kind: StorageClass
@@ -64,14 +65,14 @@ spec:
   template:
     metadata:
       labels:
-	app: wordpress
+        app: wordpress
         tier: frontend
     spec:
       containers:
       - image: wordpress:4.8-apache
         name: wordpress
         env:
-	- name: WORDPRESS_DB_HOST
+        - name: WORDPRESS_DB_HOST
           value: wordpress-mysql
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
@@ -79,18 +80,12 @@ spec:
               name: mysql-pass
               key: password
         ports:
-	- containerPort: 80
+        - containerPort: 80
           name: wordpress
         volumeMounts:
         - name: wordpress-persistent-storage
           mountPath: /var/www/html
-	resources:
-          limits:
-            cpu: 10m
       volumes:
       - name: wordpress-persistent-storage
         persistentVolumeClaim:
           claimName: wp-pv-claim
-
-
-
