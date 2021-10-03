@@ -1,5 +1,4 @@
-  GNU nano 2.9.8                                                                                                                                                                                                                       mysql-deployment.yaml                                                                                                                                                                                                                                  
-
+---                                                                                                                                                                                                                      mysql-deployment.yaml                                                                                                                                                                                                   
 apiVersion: v1
 kind: Service
 metadata:
