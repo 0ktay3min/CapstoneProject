@@ -6,5 +6,5 @@ resources:
   - ingressawscontroller.yaml 
   - mysql-deployment.yaml
   - wordpress-deployment.yaml
-  - user_role.yaml
+  - rbac.yaml
   - metricserver.yaml
