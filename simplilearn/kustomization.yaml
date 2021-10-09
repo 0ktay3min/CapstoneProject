@@ -3,8 +3,8 @@ secretGenerator:
   literals:
   - password=YOUR_PASSWORD
 resources:
-#  - ingressawscontroller.yaml 
+  - ingress.yaml 
   - mysql-deployment.yaml
   - wordpress-deployment.yaml
   - rbac.yaml
-#  - metricserver.yaml
+  - metrics_server.yaml
