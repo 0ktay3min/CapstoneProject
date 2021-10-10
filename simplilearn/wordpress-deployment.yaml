@@ -26,7 +26,7 @@ spec:
   type: NodePort
   ports:
     - port: 80 #default port ofr wordpress
-      nodePort: 33333
+      nodePort: 30000
       name: http
   selector:
     app: wordpress
