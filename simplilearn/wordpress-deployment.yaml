@@ -103,7 +103,7 @@ spec:
           mountPath: /var/www/html
         resources:
             limits:
-              cpu: 100m
+              cpu: 50m
       volumes:
       - name: wordpress-persistent-storage
         persistentVolumeClaim:
